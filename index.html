@@ -3,216 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>Tejas Audichya</title>
-    <style>
-        /* --- Configuration --- */
-        :root {
-            --bg-dark: #121212; /* Very dark grey */
-            --bg-medium: #1e1e1e; /* Slightly lighter dark */
-            --text-light: #e0e0e0; /* Light grey text */
-            --accent-green: #66FF99; /* A modern, slightly minty green */
-            --accent-green-hover: #4CFF8A; /* Slightly brighter/different green for hover */
-            --font-primary: 'Lato', sans-serif; /* Use Lato, fallback to generic sans-serif */
-}
-
-
-        /* --- Base Styles --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: var(--font-primary);
-            line-height: 1.7;
-        }
-
-        /* --- Layout --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto; /* Center content */
-            padding: 0 20px; /* Add padding on sides */
-        }
-
-        section {
-            padding: 60px 0;
-            border-bottom: 1px solid var(--bg-medium); /* Separator */
-            /* Simple fade-in animation for sections */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSection 0.8s ease-out forwards;
-        }
-
-        /* Stagger animation delay for sections */
-        section:nth-of-type(1) { animation-delay: 0.1s; }
-        section:nth-of-type(2) { animation-delay: 0.2s; }
-        section:nth-of-type(3) { animation-delay: 0.3s; }
-        section:nth-of-type(4) { animation-delay: 0.4s; }
-
-
-        /* --- Typography & Accents --- */
-        h1, h2, h3 {
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        h1 { font-size: 2.8rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.4rem; }
-
-        a {
-            color: var(--accent-green);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--accent-green-hover);
-        }
-
-        /* --- Components --- */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-green);
-            color: var(--bg-dark); /* Dark text on green button */
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 1rem; /* Add some space */
-        }
-
-        .cta-button:hover {
-            background-color: var(--accent-green-hover);
-            transform: translateY(-3px); /* Slight lift effect */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        /* --- Sections Specific --- */
-
-        /* Hero Section */
-        #hero {
-            min-height: 80vh; /* Make hero take significant height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            border-bottom: none; /* No border after hero */
-        }
-        #hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 1rem auto 0 auto;
-        }
-
-
-        /* Projects Section */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-            gap: 2rem; /* Space between grid items */
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--bg-medium);
-            padding: 25px;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid transparent; /* Prepare for hover border */
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px); /* Lift card */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            border-left-color: var(--accent-green); /* Add green border */
-        }
-
-        .project-card h3 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-        .project-card p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        #contact form {
-            max-width: 600px;
-            margin: 2rem auto 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        #contact input,
-        #contact textarea {
-            background-color: var(--bg-medium);
-            color: var(--text-light);
-            border: 1px solid var(--bg-dark);
-            padding: 12px;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        #contact input:focus,
-        #contact textarea:focus {
-             outline: 2px solid var(--accent-green);
-             border-color: var(--accent-green);
-        }
-
-        #contact button {
-            align-self: flex-start; /* Align button to the left */
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px; /* Space above footer */
-            border-top: 1px solid var(--bg-medium);
-            font-size: 0.9rem;
-            color: #aaa; /* Muted footer text */
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeInSection {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet"> </head>
+<style>/* Define Updated Color Variables */
+    :root {
+        --bg-color: #2C2C2C; /* Dark Background */
+        --text-primary-accent: #FFB74D; /* Warm Orange/Gold Accent */
+        --text-secondary: #BDBDBD; /* Light Gray Body Text */
+        --border-color: #444444; /* Subtle Border Color */
+        --font-main: 'Lato', sans-serif; /* Example Font - Remains the Same */
+    }
+    
+    body {
+        margin: 0;
+        font-family: var(--font-main);
+        background-color: var(--bg-color);
+        color: var(--text-secondary); /* Default text is now light gray */
+        line-height: 1.6;
+    }
+    
+    /* Update elements to use the new colors */
+    h1, h2, h3, .logo, .cta-button /* Headings & Accents */ {
+        color: var(--text-primary-accent);
+        font-weight: 300; /* Or 400 if preferred */
+    }
+    
+    p { /* Body text already uses --text-secondary from body */
+        margin-bottom: 1em;
+    }
+    
+    /* Navigation Bar */
 /* Navigation Bar */
-.navbar {
-    background-color: var(--bg-medium);
-    padding: 15px 20px;
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em; /* Adjust padding to avoid excessive spacing */
+    background-color: rgba(44, 44, 44, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 2em; /* Space between links */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Prevent overflow issues */
 }
 
 .nav-links li {
@@ -220,151 +63,347 @@
 }
 
 .nav-links a {
-    color: var(--text-light);
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    color: var(--text-secondary);
+    font-weight: 400;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    background-color: var(--accent-green);
-    color: var(--bg-dark);
+    color: var(--text-primary-accent);
 }
 
-/* Content Sections */
-.content-section {
-    display: none;
-    padding: 80px 20px; /* Add padding to avoid overlap with navbar */
-    margin-top: 60px; /* Space for fixed navbar */
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none; /* Hidden by default for larger screens */
+    font-size: 1.5em;
+    color: var(--text-primary-accent); /* Warm orange/gold accent */
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute; /* Position it relative to the nav */
+    top: 1.5em; /* Adjust vertical alignment */
+    right: 2em; /* Adjust horizontal alignment */
+    z-index: 1001; /* Ensure it appears above other elements */
 }
 
-.content-section.active {
-    display: block;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Show the menu toggle button on smaller screens */
+    }
+
+    .nav-links {
+        display: none; /* Hide navigation links by default */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgba(44, 44, 44, 0.9);
+        width: 100%;
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show navigation links when active */
+    }
 }
-    </style>
-</head>
+
+    /* --- Section Styling --- */
+    section {
+        padding: 4em 2em;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    /* --- Project Grid --- */
+    .project-item {
+        background-color: #383838; /* Slightly lighter background for card */
+        padding: 1em;
+        border: 1px solid var(--border-color);
+    }
+    
+    .project-item h3 { /* Project titles use accent color */
+         color: var(--text-primary-accent);
+         margin-top: 0;
+         font-size: 1.2em;
+    }
+    
+    /* --- Footer --- */
+    footer {
+        text-align: center;
+        padding: 2em;
+        margin-top: 3em;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9em;
+        color: var(--text-secondary);
+    }
+    
+    /* --- Form Elements (Example) --- */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        background-color: #444;
+        border: 1px solid #555;
+        color: var(--text-secondary);
+        padding: 0.5em;
+        width: 100%; /* Adjust as needed */
+    }
+    
+    label {
+        color: var(--text-secondary);
+        display: block;
+        margin-bottom: 0.5em;
+    }
+    
+    /* Call to action button styling */
+    .cta-button {
+        display: inline-block;
+        padding: 0.8em 1.5em;
+        background-color: var(--text-primary-accent);
+        color: var(--bg-color); /* Dark text on accent background */
+        text-decoration: none;
+        border-radius: 4px; /* Optional: slight rounding */
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        background-color: #e69500; /* Darker shade on hover */
+    }
+    
+    
+    /* Ensure links in body text are also visible */
+    main a {
+       color: var(--text-primary-accent);
+       text-decoration: underline;
+    }
+    
+    main a:hover {
+       text-decoration: none;
+    }
+
+#tsparticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+body > header, main, footer {
+    position: relative;
+    z-index: 1;
+}
+#tech-stack {
+    text-align: center;
+    padding: 3em 1em;
+}
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+    font-size: 2em;
+}
+.tech-icons span {
+    transition: transform 0.3s ease;
+    cursor: default;
+}
+.tech-icons span:hover {
+    transform: scale(1.3);
+}
+
+#working-on {
+    padding: 3em 1em;
+    text-align: center;
+}
+progress {
+    width: 60%;
+    height: 1.5em;
+    appearance: none;
+}
+progress::-webkit-progress-bar {
+    background-color: #444;
+    border-radius: 10px;
+}
+progress::-webkit-progress-value {
+    background-color: var(--text-primary-accent);
+    border-radius: 10px;
+}
+
+#blog {
+    padding: 3em 1em;
+}
+#blog article {
+    background: #333;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+}
+
+</style>
 <body>
-        <header class="navbar">
-        <div class="container">
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" data-target="hero">Home</a></li>
-                    <li><a href="#" data-target="about">About</a></li>
-                    <li><a href="#" data-target="projects">Projects</a></li>
-                    <li><a href="#" data-target="contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+
+<!-- tsParticles background -->
+<div id="tsparticles"></div>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("tsparticles", {
+    background: {
+        color: {
+            value: "#2C2C2C"
+        }
+    },
+    fpsLimit: 60,
+    interactivity: {
+        events: {
+            onHover: {
+                enable: true,
+                mode: "connect"
+            },
+            resize: true
+        },
+        modes: {
+            connect: {
+                distance: 120,
+                radius: 60,
+                links: {
+                    opacity: 0.5
+                }
+            }
+        }
+    },
+    particles: {
+        color: {
+            value: "#FFB74D"
+        },
+        links: {
+            color: "#FFB74D",
+            distance: 150,
+            enable: true,
+            opacity: 0.3,
+            width: 1
+        },
+        collisions: {
+            enable: false
+        },
+        move: {
+            direction: "none",
+            enable: true,
+            outModes: {
+                default: "bounce"
+            },
+            random: false,
+            speed: 1.5,
+            straight: false
+        },
+        number: {
+            density: {
+                enable: true,
+                area: 800
+            },
+            value: 60
+        },
+        opacity: {
+            value: 0.3
+        },
+        shape: {
+            type: "circle"
+        },
+        size: {
+            value: { min: 1, max: 4 }
+        }
+    },
+    detectRetina: true
+});
+</script>
+
+    <header>
+        <nav>
+            <div class="logo">Hey there,
+                <br> I'm Tejas</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle">☰</button>
+        </nav>
     </header>
-
     <main>
-        <section id="hero" class="content-section active">
-            <div class="container">
-                <h1>Your Name</h1>
-                <h2>Modern Web Developer / Designer / [Your Role]</h2>
-                <p>I create stunning, performant, and user-friendly digital experiences. Let's build something amazing together.</p>
-                <a href="#projects" class="cta-button">View My Work</a>
-            </div>
+        <section id="home" class="hero">
+            <h1>Your Profession / Headline</h1>
+            <p>A brief introduction about what you do.</p>
+            <a href="#portfolio" class="cta-button">View My Work</a>
         </section>
 
-        <section id="about" class="content-section">
-            <div class="container">
-                <h2>About Me</h2>
-                <p>Hello! I'm [Your Name], passionate about [Your Field]. I specialize in [Your Key Skill 1] and [Your Key Skill 2]. I love tackling complex problems and turning ideas into reality through code and design.</p>
-                <p>My goal is always to create applications that are not only functional but also aesthetically pleasing and intuitive to use. When I'm not coding, you can find me [Your Hobby].</p>
-            </div>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>More details about your skills and experience...</p>
         </section>
 
-        <section id="projects" class="content-section">
-            <div class="container">
-                <h2>Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>Project Title One</h3>
-                        <p>A brief description of the project, the problem it solved, and the technologies used (e.g., React, Node.js, CSS Grid).</p>
-                        <a href="#" target="_blank">View Live</a> | <a href="#" target="_blank">GitHub Repo</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>Project Title Two</h3>
-                        <p>Another project description. Focus on your role and key achievements within the project. (e.g., Designed UI/UX, developed API).</p>
-                        <a href="#" target="_blank">View Live</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>Project Title Three</h3>
-                        <p>Showcase a different skill or type of project here. Maybe a design concept or a utility tool.</p>
-                        <a href="#" target="_blank">Behance/Dribbble</a>
-                    </div>
+        <section id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="project-grid">
+                <div class="project-item">
+                    <img src="project1.jpg" alt="Project 1">
+                    <h3>Project Title 1</h3>
+                    <p>Short description of the project.</p>
                 </div>
-            </div>
+                </div>
         </section>
 
-        <section id="contact" class="content-section">
-            <div class="container">
-                <h2>Get In Touch</h2>
-                <p>Interested in working together or have a question? Fill out the form below or email me at <a href="mailto:your.email@example.com">your.email@example.com</a>.</p>
-                <form action="#" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="cta-button">Send Message</button>
+        <section id="contact">
+            <h2>Contact</h2>
+            <form>
                 </form>
+        </section>
+        <section id="tech-stack">
+            <h2>Tech Stack</h2>
+            <div class="tech-icons">
+                <span>💻 HTML</span>
+                <span>🎨 CSS</span>
+                <span>⚙️ JavaScript</span>
+                <span>🐍 Python</span>
+                <span>⚛️ React</span>
+                <span>🗄️ SQL</span>
+                <span>☁️ Firebase</span>
             </div>
         </section>
-    </main>
+        
+        <section id="working-on">
+            <h2>What I'm Working On</h2>
+            <p>Currently diving deeper into React and building a weather app using OpenWeatherMap API!</p>
+            <progress value="70" max="100"></progress>
+        </section>
+        
+        <section id="blog">
+            <h2>Dev Journal</h2>
+            <article>
+                <h3>🛠️ Debugging a Recursive Function</h3>
+                <p>Here's how I tackled a nasty infinite loop in my recursion code...</p>
+                <a href="#">Read More</a>
+            </article>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Profile</a></p>
+            <a href="resume.pdf" class="cta-button" download>Download Resume</a>
+        </section>
+        
+        </main>
+        
+            <footer>
+                <p>&copy; 2025 Your Name. All rights reserved.</p>
+            </footer>
+            
 </body>
-<footer>
-        <div class="container">
-            <p>&copy; 2023 Your Name. All rights reserved.</p>
-            <p>Follow me on <a href="#" target="_blank">LinkedIn</a> | <a href="#" target="_blank">GitHub</a></p>
-        </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('.content-section');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                // Get the target section ID
-                const targetId = link.getAttribute('data-target');
-
-                // Hide all sections
-                sections.forEach(section => section.classList.remove('active'));
-
-                // Show the target section
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('.content-section');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                // Get the target section ID
-                const targetId = link.getAttribute('data-target');
-                const targetSection = document.getElementById(targetId);
-
-                // Hide all sections
-                sections.forEach(section => section.classList.remove('active'));
-
-                // Show the target section
-                targetSection.classList.add('active');
-
-                // Scroll to the target section
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-    });
-
-    </script>
+</html>
