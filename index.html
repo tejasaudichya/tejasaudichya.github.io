@@ -1,111 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tejas Audichya - Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 </head>
+<style>
+    :root {
+    --bg-color: #2C2C2C;
+    --text-primary-accent: #FFB74D;
+    --text-secondary: #BDBDBD;
+    --border-color: #444444;
+    --font-heading: 'Space Mono', monospace; /* For headings */
+    --font-body: 'Roboto', sans-serif;      /* For body text */
+}
+
+body {
+    font-family: var(--font-body);
+    /* ... other body styles */
+}
+
+h1, h2, h3, .logo, .cta-button {
+    font-family: var(--font-heading);
+    /* ... other heading styles */
+}
+
+    body {
+        margin: 0;
+        font-family: var(--font-main);
+        background-color: var(--bg-color);
+        color: var(--text-secondary); /* Default text is now light gray */
+        line-height: 1.6;
+    }
+
+    /* Update elements to use the new colors */
+    h1, h2, h3, .logo, .cta-button /* Headings & Accents */ {
+        color: var(--text-primary-accent);
+        
+    }
+
+    p { /* Body text already uses --text-secondary from body */
+        margin-bottom: 1em;
+    }
+
+    /* Navigation Bar */
+    header {
+        position: relative;
+        z-index: 1000; /* Ensures header is on top */
+    }
+
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em; /* Adjust padding to avoid excessive spacing */
+        background-color: rgba(44, 44, 44, 0.8); /* Semi-transparent background */
+        backdrop-filter: blur(10px); /* Blur effect */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        box-sizing: border-box; /* Ensure padding is included in the width */
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2em; /* Space between links */
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Prevent overflow issues */
+    }
+
+    .nav-links li {
+        display: inline;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 400;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--text-primary-accent);
+    }
+
+    /* Menu Toggle Button */
+    .menu-toggle {
+        display: none; /* Hidden by default for larger screens */
+        font-size: 1.5em;
+        color: var(--text-primary-accent); /* Warm orange/gold accent */
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute; /* Position it relative to the nav */
+        top: 1.5em; /* Adjust vertical alignment */
+        right: 2em; /* Adjust horizontal alignment */
+        z-index: 1001; /* Ensure it appears above other elements */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block; /* Show the menu toggle button on smaller screens */
+        }
+
+        .nav-links {
+            display: none; /* Hide navigation links by default */
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: rgba(44, 44, 44, 0.9);
+            width: 100%;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .nav-links.active {
+            display: flex; /* Show navigation links when active */
+        }
+    }
+
+    /* --- Section Styling --- */
+    section {
+        padding: 4em 2em;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* --- Project Grid --- */
+    .project-item {
+        background-color: #383838; /* Slightly lighter background for card */
+        padding: 1em;
+        border: 1px solid var(--border-color);
+    }
+
+    .project-item h3 { /* Project titles use accent color */
+        color: var(--text-primary-accent);
+        margin-top: 0;
+        font-size: 1.2em;
+    }
+
+    /* --- Footer --- */
+    footer {
+        text-align: center;
+        padding: 2em;
+        margin-top: 3em;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9em;
+        color: var(--text-secondary);
+    }
+
+    /* --- Form Elements (Example) --- */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        background-color: #444;
+        border: 1px solid #555;
+        color: var(--text-secondary);
+        padding: 0.5em;
+        width: 100%; /* Adjust as needed */
+    }
+
+    label {
+        color: var(--text-secondary);
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    /* Call to action button styling */
+    .cta-button {
+        display: inline-block;
+        padding: 0.8em 1.5em;
+        background-color: var(--text-primary-accent);
+        color: var(--bg-color); /* Dark text on accent background */
+        text-decoration: none;
+        border-radius: 4px; /* Optional: slight rounding */
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #e69500; /* Darker shade on hover */
+    }
+
+    /* Ensure links in body text are also visible */
+    main a {
+        color: var(--text-primary-accent);
+        text-decoration: underline;
+    }
+
+    main a:hover {
+        text-decoration: none;
+    }
+
+    #tsparticles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    #tsparticles::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1; /* Above particles, below content */
+    pointer-events: none;
+    backdrop-filter: blur(1px); /* Adjust blur as needed */
+    -webkit-backdrop-filter: blur(8px);
+    }
+    main, footer {
+        position: relative;
+        z-index: 1;
+    }
+
+    #tech-stack {
+        text-align: center;
+        padding: 3em 1em;
+    }
+
+    .tech-icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5em;
+        font-size: 2em;
+    }
+
+    .tech-icons span {
+        transition: transform 0.3s ease;
+        cursor: default;
+    }
+
+    .tech-icons span:hover {
+        transform: scale(1.3);
+    }
+
+    #working-on {
+        padding: 3em 1em;
+        text-align: center;
+    }
+
+    progress {
+        width: 60%;
+        height: 1.5em;
+        appearance: none;
+    }
+
+    progress::-webkit-progress-bar {
+        background-color: #444;
+        border-radius: 10px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: var(--text-primary-accent);
+        border-radius: 10px;
+    }
+
+    #blog {
+        padding: 3em 1em;
+    }
+
+    #blog article {
+        background: #333;
+        padding: 1em;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #000;
+    }
+
+    .contact-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+        margin: 2em 0;
+        justify-content: center;
+    }
+
+    .contact-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0.8em 1.5em;
+        background: var(--bg-color);
+        color: var(--text-primary-accent);
+        border: 2px solid var(--text-primary-accent);
+        border-radius: 6px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.1em;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition:
+            background 0.3s,
+            color 0.3s,
+            transform 0.2s,
+            box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-btn svg {
+        transition: transform 0.3s;
+        height: 1.2em;
+        width: 1.2em;
+    }
+
+    .contact-btn:hover,
+    .contact-btn:focus {
+        background: var(--text-primary-accent);
+        color: var(--bg-color);
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 6px 24px rgba(255,183,77,0.15);
+    }
+
+    .contact-btn:hover svg,
+    .contact-btn:focus svg {
+        transform: scale(1.2) rotate(-8deg);
+    }
+
+    .contact-btn.email { border-color: #ff9800; }
+    .contact-btn.github { border-color: #fff; }
+    .contact-btn.linkedin { border-color: #0a66c2; }
+    .contact-btn.resume { border-color: #43a047; }
+
+    .contact-btn.github:hover,
+    .contact-btn.github:focus { background: #fff; color: #222; }
+    .contact-btn.linkedin:hover,
+    .contact-btn.linkedin:focus { background: #0a66c2; color: #fff; }
+    .contact-btn.resume:hover,
+    .contact-btn.resume:focus { background: #43a047; color: #fff; }
+
+</style>
 <body>
 
-  <div id="tsparticles"></div>
+<div id="tsparticles"></div>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+    tsParticles.load("tsparticles", {
+        background: {
+            color: {
+                value: "#2C2C2C"
+            }
+        },
+        fpsLimit: 60,
+        interactivity: {
+            events: {
+                onHover: {
+                    enable: true,
+                    mode: "connect"
+                },
+                resize: true
+            },
+            modes: {
+                connect: {
+                    distance: 120,
+                    radius: 60,
+                    links: {
+                        opacity: 0.5
+                    }
+                }
+            }
+        },
+        particles: {
+            color: {
+                value: "#FFB74D"
+            },
+            links: {
+                color: "#FFB74D",
+                distance: 150,
+                enable: true,
+                opacity: 0.3,
+                width: 1
+            },
+            collisions: {
+                enable: false
+            },
+            move: {
+                direction: "none",
+                enable: true,
+                outModes: {
+                    default: "bounce"
+                },
+                random: false,
+                speed: 1.5,
+                straight: false
+            },
+            number: {
+                density: {
+                    enable: true,
+                    area: 800
+                },
+                value: 60
+            },
+            opacity: {
+                value: 0.3
+            },
+            shape: {
+                type: "circle"
+            },
+            size: {
+                value: { min: 1, max: 4 }
+            }
+        },
+        detectRetina: true
+    });
+</script>
 
-  <header>
+<header>
     <nav>
-      <div class="logo">Hey there,<br> I'm Tejas</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle">☰</button>
+        <div class="logo">Hey there,
+            <br> I'm Tejas
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle">☰</button>
     </nav>
-  </header>
-
-  <main>
+</header>
+<main>
     <section id="home" class="hero">
-      <h1>Frontend Developer & Creative Technologist</h1>
-      <p>I craft delightful digital experiences through code and design.</p>
-      <a href="#portfolio" class="cta-button">View My Work</a>
+        <h1>Your Profession / Headline</h1>
+        <p>A brief introduction about what you do.</p>
+        <a href="#portfolio" class="cta-button">View My Work</a>
     </section>
 
     <section id="about">
-      <h2>About Me</h2>
-      <p>I'm a passionate developer with experience in building responsive web applications using modern JavaScript frameworks. I thrive on solving real-world problems with elegant solutions.</p>
+        <h2>About Me</h2>
+        <p>More details about your skills and experience...</p>
     </section>
 
     <section id="portfolio">
-      <h2>Portfolio</h2>
-      <div class="project-grid">
-        <div class="project-item">
-          <img src="project1.jpg" alt="Project 1">
-          <h3>Project Title 1</h3>
-          <p>This web app uses React and Firebase to manage tasks and deadlines effectively.</p>
+        <h2>Portfolio</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <img src="project1.jpg" alt="Project 1">
+                <h3>Project Title 1</h3>
+                <p>Short description of the project.</p>
+            </div>
         </div>
-        <!-- Add more project-item blocks as needed -->
-      </div>
-    </section>
-
-    <section id="tech-stack">
-      <h2>Tech Stack</h2>
-      <div class="tech-icons">
-        <span>💻 HTML</span>
-        <span>🎨 CSS</span>
-        <span>⚙️ JavaScript</span>
-        <span>🐍 Python</span>
-        <span>⚛️ React</span>
-        <span>🗄️ SQL</span>
-        <span>☁️ Firebase</span>
-      </div>
-    </section>
-
-    <section id="working-on">
-      <h2>What I'm Working On</h2>
-      <p>Building a weather app using React and OpenWeatherMap API with responsive UI and dark mode support.</p>
-      <progress value="70" max="100"></progress>
-    </section>
-
-    <section id="blog">
-      <h2>Dev Journal</h2>
-      <article>
-        <h3>🛠️ Debugging a Recursive Function</h3>
-        <p>Learn how I resolved an infinite loop bug in a recursion problem.</p>
-        <a href="#">Read More</a>
-      </article>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-buttons">
-        <a href="mailto:tejasaudichya@gmail.com" class="contact-btn email" title="Email">
-          <!-- Email SVG -->
-          Email
-        </a>
-        <a href="https://github.com/tejasaudichya" class="contact-btn github" target="_blank" title="GitHub">
-          <!-- GitHub SVG -->
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/tejas-audichya/" class="contact-btn linkedin" target="_blank" title="LinkedIn">
-          <!-- LinkedIn SVG -->
-          LinkedIn
-        </a>
-        <a href="resume.pdf" class="contact-btn resume" download title="Download Resume">
-          <!-- Download SVG -->
-          Resume
-        </a>
-      </div>
+        <h2>Contact</h2>
+        <form>
+        </form>
     </section>
-  </main>
+    <section id="tech-stack">
+        <h2>Tech Stack</h2>
+        <div class="tech-icons">
+            <span>💻 HTML</span>
+            <span>🎨 CSS</span>
+            <span>⚙️ JavaScript</span>
+            <span>🐍 Python</span>
+            <span>⚛️ React</span>
+            <span>🗄️ SQL</span>
+            <span>☁️ Firebase</span>
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Tejas Audichya. All rights reserved.</p>
-  </footer>
+    <section id="working-on">
+        <h2>What I'm Working On</h2>
+        <p>Currently diving deeper into React and building a weather app using OpenWeatherMap API!</p>
+        <progress value="70" max="100"></progress>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-  <script src="script.js"></script>
+    <section id="blog">
+        <h2>Dev Journal</h2>
+        <article>
+            <h3>🛠️ Debugging a Recursive Function</h3>
+            <p>Here's how I tackled a nasty infinite loop in my recursion code...</p>
+            <a href="#">Read More</a>
+        </article>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-buttons">
+            <a href="mailto:tejasaudichya@gmail.com" class="contact-btn email" title="Email">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="18" height="16" rx="2" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Email
+            </a>
+            <a href="https://github.com/tejasaudichya" class="contact-btn github" target="_blank" title="GitHub">
+                <svg width="18" height="18" style="min-width:18px;min-height:18px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/tejas-audichya/" class="contact-btn linkedin" target="_blank" title="LinkedIn">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="18" height="18" rx="2"/>
+                    <line x1="7" y1="10" x2="7" y2="17"/>
+                    <line x1="7" y1="7" x2="7" y2="7"/>
+                    <line x1="12" y1="14" x2="12" y2="17"/>
+                    <path d="M12 14c0-1.1.9-2 2-2s2 .9 2 2v3"/>
+                </svg>
+                LinkedIn
+            </a>
+            <a href="resume.pdf" class="contact-btn resume" download title="Download Resume">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+                Resume
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Your Name. All rights reserved.</p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
+    });
+</script>
+
 </body>
 </html>
